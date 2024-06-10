@@ -16,8 +16,10 @@ public class Generation : MonoBehaviour
     float transitionTimer = 0.5f;
 
     float timerCount;
-    float timer = 120f;
+    float timer = 240f;
     public void Generate(){
+        Debug.Log("Generated");
+        Time.timeScale = 7;
         population = new List<Car>();
         for (int i = 0; i < 100; i++)
         {
@@ -55,6 +57,15 @@ public class Generation : MonoBehaviour
 
     void Update() {
 
+        if(Input.GetKeyDown(KeyCode.D)){
+            Time.timeScale++;
+             Debug.Log(Time.timeScale);
+        }
+        if(Input.GetKeyDown(KeyCode.A)){
+            Time.timeScale--;
+             Debug.Log(Time.timeScale);
+        }
+       
         if(!Finished){
             int cur = 0;
             bool check = true;
@@ -65,7 +76,7 @@ public class Generation : MonoBehaviour
                     check = false;
                 }
             }
-            info.text = "Alive: " + cur + "\nGenerations: " + Generations;
+            info.text = "Alive: " + cur + " Gen: " + Generations;
             if(check){
                 Finished = true;
                 Debug.Log("Over");

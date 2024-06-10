@@ -32,7 +32,7 @@ public class Car : MonoBehaviour
         Alive=false;
     }
 
-    void Update() {
+    void FixedUpdate() {
 
         if(Alive){
             for(int i=0; i!= Sensors.Length; i++){
@@ -42,9 +42,9 @@ public class Car : MonoBehaviour
 
 
             if(output[0] > output[1]){
-                Turn(0.3f);
+                Turn(0.3f * steering);
             }else{
-                Turn(-0.3f);
+                Turn(-0.3f * steering);
             }
             
             rb.velocity = transform.right * Time.deltaTime * speedDef;
